@@ -26,16 +26,28 @@ app.set('view engine', 'ejs');
 /*=============== End ======================*/
 
 //render my index page
-
-
     app.get('/', function (req, res) {
+        /**=====================================
+         * set all value to 0 here because when i run index
+         * error send :  variables are not defined
+         =======================================*/
         let dateDay = (moment().format('LLLL'));
+        let weatherName = 0;
+        let weatherTemp = 0;
+        let weatherImg = 0;
+        let weatherHumidity = 0;
+        let weatherSpeed = 0;
+        
         res.render('index', {
-            //send data to my index view
-            dateDay: dateDay
-           
+            //send default value to my index view
+            dateDay: dateDay,
+            weatherTemp: weatherTemp,
+            weatherName: weatherName,
+            weatherSpeed: weatherSpeed,
+            weatherHumidity: weatherHumidity,
+            weatherImg: weatherImg
         }); 
-    //    res.render('index');
+   
    })  
 
 
@@ -45,7 +57,7 @@ app.set('view engine', 'ejs');
  ============================================*/
 app.post('/', function (req, res) {
     let city = req.body.city;
-    console.log('city is :' + city);
+    console.log('city is :' + city); 
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
 
     request({

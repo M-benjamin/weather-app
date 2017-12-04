@@ -54,49 +54,41 @@
 					<div class="today forecast">
 						<div class="forecast-header">
 							<div class="day">
-									<% if(dateDay){ %>
-										<%= dateDay %>
-									<% } %>
+								<% if(dateDay){ %>
+									<%= dateDay %>
+								<% } %>
 							</div>
 						</div>
-
 						<div class="forecast-content">
 							<div class="location">
-								
-										<%= weatherName %>
-									
-								
+								<% if(weatherName !== 0){ %>
+									<%= weatherName %>
+								<% } %>
 							</div>
 							<div class="degree">
 								<div class="num">
-										
-											<%= weatherTemp  %>
-										
-									
-										<sup>o</sup>C</div>
+									<% if(weatherTemp !== 0){ %>
+										<%= weatherTemp %><sup>o</sup>C</div>
+									<% } %>
 								<div class="forecast-icon">
-										
-											<% weatherImg.forEach(function(img){ %>
-												<span>fog</span>
-												<img src="http://openweathermap.org/img/w/<%- img.icon %>.png" width=90 />
-												
-											<% }); %>
-										
-									
+									<% if(weatherImg!== 0){ %>
+										<% weatherImg.forEach(function(img){ %>
+											
+											<img src="http://openweathermap.org/img/w/<%- img.icon %>.png" width=90 />
+										<% }); %>
+									<% } %>
 								</div>
 							</div>
 							<span>
 								<img src="images/icon-umberella.png" alt="">
-							
+								<% if( weatherHumidity !== 0){ %>
 									<%= weatherHumidity %>%</span>
-								
-								
-							<span>
+								<% } %>
+								<span>
 								<img src="images/icon-wind.png" alt="">
-								
+								<% if( weatherSpeed !== 0){ %>
 									<%= weatherSpeed %>km/h</span>
-								
-								
+								<% } %>
 
 						</div>
 					</div>
