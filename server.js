@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const request = require('request');
 const moment = require('moment');
-const port = process.argv[2] || 8000;
+const port = process.env.PORT || 8000;
 
 //set my api key
 const apiKey = 'c5806e7acb5635dc19890e09b140bb0e';
