@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const path = require('path');
 const request = require('request');
 const moment = require('moment');
 const port = process.argv[2] || 8000;
@@ -18,15 +19,26 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+//set the rending engine
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 /*=============== End ======================*/
 
 //render my index page
-app.get('/', function (req, res) {
-    // res.send('hello');
-    res.render('index');
-})
+
+
+    app.get('/', function (req, res) {
+        let dateDay = (moment().format('LLLL'));
+        res.render('index', {
+            //send data to my index view
+            dateDay: dateDay
+           
+        }); 
+    //    res.render('index');
+   })  
+
+
 
 /**===========================================
  * get my input search and all the traitments
@@ -46,6 +58,14 @@ app.post('/', function (req, res) {
         } else {
 
             let weather = JSON.parse(body);
+            //set date
+            let dateDay = (moment().format('LLLL'));
+            let weatherTemp = weather.main.temp;
+            let weatherName = weather.name;
+            let weatherImg = weather.weather;
+            let weatherHumidity = weather.main.humidity;
+            let weatherSpeed = weather.wind.speed;
+
             console.log(weather);
             console.log(weather.main.humidity);
             console.log(weather.wind.speed);
@@ -57,15 +77,7 @@ app.post('/', function (req, res) {
                     error: 'Error!!! , Can not fetch location'
                 });
 
-            } else {
-
-                //set date
-                let dateDay = (moment().format('LLLL'));
-                let weatherTemp = weather.main.temp;
-                let weatherName = weather.name;
-                let weatherImg = weather.weather;
-                let weatherHumidity = weather.main.humidity;
-                let weatherSpeed = weather.wind.speed;
+            } else { 
 
                 res.render('index', {
                     //send data to my index view

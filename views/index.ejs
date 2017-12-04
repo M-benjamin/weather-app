@@ -54,30 +54,49 @@
 					<div class="today forecast">
 						<div class="forecast-header">
 							<div class="day">
-								<%= dateDay %>
+									<% if(dateDay){ %>
+										<%= dateDay %>
+									<% } %>
 							</div>
 						</div>
 
 						<div class="forecast-content">
 							<div class="location">
-								<%= weatherName %>
+								
+										<%= weatherName %>
+									
+								
 							</div>
 							<div class="degree">
 								<div class="num">
-									<%= weatherTemp %>
+										
+											<%= weatherTemp  %>
+										
+									
 										<sup>o</sup>C</div>
 								<div class="forecast-icon">
-									<% weatherImg.forEach(function(img){ %>
-										<img src="http://openweathermap.org/img/w/<%- img.icon %>.png" width=90 />
-										<% }); %>
+										
+											<% weatherImg.forEach(function(img){ %>
+												<span>fog</span>
+												<img src="http://openweathermap.org/img/w/<%- img.icon %>.png" width=90 />
+												
+											<% }); %>
+										
+									
 								</div>
 							</div>
 							<span>
 								<img src="images/icon-umberella.png" alt="">
-								<%= weatherHumidity %>%</span>
+							
+									<%= weatherHumidity %>%</span>
+								
+								
 							<span>
 								<img src="images/icon-wind.png" alt="">
-								<%= weatherSpeed %>km/h</span>
+								
+									<%= weatherSpeed %>km/h</span>
+								
+								
 
 						</div>
 					</div>
